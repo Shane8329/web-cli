@@ -1,0 +1,17 @@
+{
+  "name": "web-cli",
+  "version": "1.0.0",
+  "description": "cli for web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "t": "tsup-node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  }
+}
