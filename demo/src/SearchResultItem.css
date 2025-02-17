@@ -1,0 +1,14 @@
+.search-result-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
