@@ -1,7 +1,5 @@
 import chalk from "chalk";
-import { exec } from "child_process";
 import inquirer from "inquirer";
-import path from "path";
 import initProject from "./init";
 import { downloadGitProject } from "../utils/download";
 import { questions, tpls } from "./config";
@@ -11,9 +9,9 @@ const log = console.log;
 function question(url: string) {
   inquirer
     .prompt(questions)
-    .then(async (answers) => {
+    .then(async (answers: any) => {
       //下载模板
-      await downloadGitProject(url, answers?.projectName || "");
+      await downloadGitProject(url, answers?.projectName);
 
       //初始化项目配置
       initProject({
