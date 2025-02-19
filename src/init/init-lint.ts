@@ -46,7 +46,7 @@ export default async function initFile(framework: FrameworkType, projectRoot) {
 
   try {
     await Promise.all(promiseList);
-    console.log("create file success!");
+    console.log("lint file init success!");
   } catch (e) {
     console.error(e);
     throw new Error(`create file error ${e.toString()}`);

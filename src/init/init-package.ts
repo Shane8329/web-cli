@@ -3,6 +3,15 @@ import { FrameworkType } from "./typings";
 import fs from "fs-extra";
 import { findPackageJson, toStringify } from "../utils";
 import path from "node:path";
+import {
+  COMMIT_LINT,
+  ESLINT_TS_DEPS,
+  PRETTIER_LINT,
+  REACT_COMPONENT,
+  REACT_ESLINT_DEPS,
+  STYLE_LINT,
+  VUE_ESLINT_DEPS,
+} from "./config";
 
 function getEslintExt(framework: FrameworkType) {
   let ext = ".js,.ts";
@@ -78,6 +87,32 @@ export default function updatePackageJSON(framework: FrameworkType, projectInfo,
   if (framework !== "node") {
     pkg["lint-staged"][`./**/*.{${styleFileType}}`] = ["npm run stylelint"];
   }
+
+  let deps = { "@ebonex/eslint-config-qps@latest": "^0.0.4" };
+
+  if (framework === "react") {
+    deps = { ...deps, ...REACT_ESLINT_DEPS, ...REACT_COMPONENT };
+  }
+
+  if (framework === "vue2" || framework === "vue3") {
+    deps = { ...deps, ...VUE_ESLINT_DEPS };
+  }
+
+  if (framework !== "node") {
+    deps = { ...deps, "lint-staged": "latest", ...STYLE_LINT };
+  }
+
+  if (framework === "vue2" || framework === "vue3") {
+    deps = { ...deps, ...ESLINT_TS_DEPS };
+  }
+
+  // todo:判断安装不同的规范
+  pkg.devDependencies = {
+    ...(pkg.devDependencies || {}),
+    ...COMMIT_LINT,
+    ...PRETTIER_LINT,
+    ...deps,
+  };
 
   const packagePath = path.join(projectRoot, "package.json");
 
