@@ -5,8 +5,6 @@ module.exports = {
   rules: {
     "color-no-invalid-hex": true,
     "less/color-no-invalid-hex": true,
-    "color-hex-case": "upper",
-    "number-leading-zero": "always",
     "at-rule-no-unknown": null,
     "function-name-case": ["lower"],
     "selector-pseudo-class-no-unknown": null,

@@ -116,4 +116,5 @@ export const VITE_DEPS = {
   vite: "^6.1.0",
   eslint: "^9.19.0",
   "@eslint/js": "^9.19.0",
+  "eslint-plugin-import": "^2.31.0",
 };
