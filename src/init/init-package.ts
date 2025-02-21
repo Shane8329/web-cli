@@ -5,11 +5,11 @@ import { findPackageJson, toStringify } from "../utils";
 import path from "node:path";
 import {
   COMMIT_LINT,
-  ESLINT_TS_DEPS,
   PRETTIER_LINT,
-  REACT_COMPONENT,
-  REACT_ESLINT_DEPS,
+  REACT_DEPS,
   STYLE_LINT,
+  TYPESCRIPT,
+  VITE_DEPS,
   VUE_ESLINT_DEPS,
 } from "./config";
 
@@ -88,10 +88,10 @@ export default function updatePackageJSON(framework: FrameworkType, projectInfo,
     pkg["lint-staged"][`./**/*.{${styleFileType}}`] = ["npm run stylelint"];
   }
 
-  let deps = { "@ebonex/eslint-config-qps@latest": "^0.0.4" };
+  let deps = { "@ebonex/eslint-config-qps": "^0.0.4" };
 
   if (framework === "react") {
-    deps = { ...deps, ...REACT_ESLINT_DEPS, ...REACT_COMPONENT };
+    deps = { ...deps, ...REACT_DEPS };
   }
 
   if (framework === "vue2" || framework === "vue3") {
@@ -102,15 +102,13 @@ export default function updatePackageJSON(framework: FrameworkType, projectInfo,
     deps = { ...deps, "lint-staged": "latest", ...STYLE_LINT };
   }
 
-  if (framework === "vue2" || framework === "vue3") {
-    deps = { ...deps, ...ESLINT_TS_DEPS };
-  }
-
   // todo:判断安装不同的规范
   pkg.devDependencies = {
     ...(pkg.devDependencies || {}),
     ...COMMIT_LINT,
     ...PRETTIER_LINT,
+    ...TYPESCRIPT,
+    ...VITE_DEPS,
     ...deps,
   };
 

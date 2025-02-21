@@ -3,12 +3,14 @@ import * as fs from "fs";
 import * as path from "path";
 import * as https from "https";
 import request from "./request";
+import { projectInfo } from "../init/typings";
 export async function downloadGitProject(
   repoUrl: string,
-  projectName: string,
+  answers: projectInfo,
   token = "r6vhNJb_3ud7yxgeiSku"
 ) {
   return new Promise(async (resolve, reject) => {
+    const { projectName } = answers;
     const targetDir = process.cwd();
     const file = fs.createWriteStream(path.join(targetDir, `${projectName}.zip`));
 
@@ -30,7 +32,12 @@ export async function downloadGitProject(
   });
 }
 
-async function extractAndRename(filePath: string, targetDir: string, projectName: string) {
+async function extractAndRename(
+  filePath: string,
+  targetDir: string,
+  projectName: string,
+  framework = "react"
+) {
   const extractDir = path.join(targetDir, `${projectName}-temp`);
 
   await compressing.zip.uncompress(filePath, extractDir);
@@ -38,7 +45,7 @@ async function extractAndRename(filePath: string, targetDir: string, projectName
 
   if (files.length === 1) {
     const innerDir = path.join(extractDir, files[0]);
-    fs.renameSync(innerDir, path.join(targetDir, projectName));
+    fs.renameSync(`${innerDir}/${framework}`, path.join(targetDir, projectName));
   }
   fs.rmdirSync(extractDir, { recursive: true });
   fs.unlinkSync(filePath);

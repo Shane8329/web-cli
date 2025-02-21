@@ -1,7 +1,7 @@
 export const tpls = [
   {
     name: "React + TypeScript + Vite",
-    url: "https://gitlab-front.ebonex.io/api/v4/projects/350/repository/archive.zip",
+    url: "https://gitlab-front.ebonex.io/api/v4/projects/254/repository/archive.zip?sha=tpl",
   },
 ];
 
@@ -17,6 +17,7 @@ export const questions = [
       }
       return true;
     },
+    default: "my-app",
   },
   {
     type: "input",
@@ -68,14 +69,21 @@ export const lints = [
     remove: (framework) => framework === "node",
   },
 ];
-
-export const ESLINT_TS_DEPS = { "@typescript-eslint/eslint-plugin": "^7.5.0" };
-export const REACT_ESLINT_DEPS = {
+export const TYPESCRIPT = {
+  typescript: "^5.0.2",
+  "@typescript-eslint/eslint-plugin": "^7.5.0",
+};
+export const REACT_DEPS = {
   "eslint-plugin-react": "^7.34.1",
   "eslint-plugin-react-hooks": "^4.6.0",
   husky: "^8.0.3",
   less: "^4.2.0",
   "@ebonex/eslint-plugin-usestate-order": "^1.0.0",
+  "eslint-plugin-react-refresh": "^0.4.18",
+  "@types/react": "^19.0.8",
+  "@types/react-dom": "^19.0.3",
+  "react-router-dom": "^6.22.3",
+  "@vitejs/plugin-react": "^4.3.4",
 };
 export const VUE_ESLINT_DEPS = {
   "eslint-plugin-vue": "latest",
@@ -104,4 +112,8 @@ export const STYLE_LINT = {
   "postcss-less": "^6.0.0",
 };
 
-export const REACT_COMPONENT = { "react-router-dom": "^6.22.3", "@ebonex/qps": "^0.3.23" };
+export const VITE_DEPS = {
+  vite: "^6.1.0",
+  eslint: "^9.19.0",
+  "@eslint/js": "^9.19.0",
+};

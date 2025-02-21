@@ -11,7 +11,7 @@ function question(url: string) {
     .prompt(questions)
     .then(async (answers: any) => {
       //下载模板
-      await downloadGitProject(url, answers?.projectName);
+      await downloadGitProject(url, answers);
 
       //初始化项目配置
       initProject({
